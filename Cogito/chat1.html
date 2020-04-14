@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="chat.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script>
+            var obj = 
+		{
+		    send1: function(){
+		    msg = "User1: " + document.getElementById("msg1").value;
+		    xhr = new XMLHttpRequest();
+		    xhr.open("GET","txtup.php?msg="+msg,true);
+		    
+		    xhr.send();
+                    evs = new EventSource("chat.php");
+                    evs.addEventListener("updateChat",obj.showData,false);
+		},
+		send2: function(){
+		    msg = "User2: " + document.getElementById("msg2").value;
+		    xhr = new XMLHttpRequest();
+		    xhr.open("GET","txtup.php?msg="+msg,true);
+		    
+		    xhr.send();
+                    evs = new EventSource("chat.php");
+                    evs.addEventListener("updateChat",obj.showData,false);
+		},
+
+                    
+                showData: function(e){
+                    console.log(e.data);
+
+		    		var h = document.getElementById("content"); 
+		    		h.innerHTML = "";
+                    var div = document.getElementById("c1");div.innerHTML = "";
+                    arr = e.data.split(";");
+		    for(var i = 0; i<arr.length;++i)
+		    {
+		    	var msg = arr[i].split(":");
+		    	var str = "";
+		    	if(msg[0] == "User1")
+		    		str = "You :"
+		    	if(msg[0] == "User2")
+		    		str = "Cogito :"
+		    	if(str!= "")
+				div.innerHTML += str + msg[1] + "<br><br>";
+			}
+		   
+			},
+                onOpen: function() {
+                    console.log("SSE open");
+                },
+                onError: function() {
+                    console.log("SSE error");
+                },
+                onClose: function(e) {
+                    console.log("SSE close");
+                    evs.close();
+                    console.log(e.data);
+                }
+            }
+        </script>
+    </head>
+    <body>
+    	<div class="navbar" ng-app="">
+		<ul>
+			<a ng-href="http://localhost:8081/Cogito/page1.html"><li>Cogito</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page2_new.html"><li>HOME</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page3.html"><li>ABOUT</li></a>
+			
+			<a ng-href="http://localhost:8081/Cogito/loginpage.html"><li>FEEDBACK</li></a>
+					</ul>
+	</div>
+		<br><br><br>
+		<br><br>
+	<h1 align = "center" style = "font-family: Candara; color: white;" id="content">Let's Talk! Gather your questions and let's be friends.</h1><br>
+	<div class = "loginbox">
+	
+	<div class="textbox">
+			<div id = "c1"></div>
+			<img src="pexels-photo-753695.jpeg" width="30px" height="30px">
+			<input  type="textarea" placeholder="Type your message here..."  id="msg1" ></div>
+	<input class="btn" type="button" style = "font-family: Candara;" value="Send" onclick="
+
+																					if(document.getElementById('msg1').value.length==0)
+																						alert('Please enter your query.');
+																					else
+																					obj.send1();">
+
+	<br><br> 
+</div>
+<!--	<h2>User2</h2>
+	<div id = "c2"></div>
+	<input type = "text" id = "msg2"/>
+        <button onclick="obj.send2()">send</button>
+   --> </body>
+</html>

@@ -1,0 +1,1340 @@
+<html>
+    <head>
+        <title> clusterer </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <style>
+            body{
+                 background-image: url("image.jpg");
+                 background-size: cover; 
+
+            }
+            #canvas {
+                
+            }
+
+            .textbox{
+                        position: absolute;
+                        width: 100%;
+                        overflow: hidden;
+                        font-size: 20px;
+                        padding: 15px 0;
+                        margin: 8px 0;
+                        left: 65% ; 
+                        /*border-bottom: 1.3px solid #01ff87;*/
+                    }
+        </style>
+    </head>
+    <body>
+            <div class = "textbox" >
+                <div><b>Teams and the schools assigned to them:</b></div><br>
+                <div id = "show"></div>
+                <div ng-app=""><a ng-href="http://localhost:8081/Cogito/chat1.html"> Shall we plan together ? </a></div>
+
+            </div>
+            
+    </body>
+    <canvas id="canvas" height="800" width="800"></canvas>
+    <script type="text/javascript">
+        var canvas; 
+var ctx;
+var height = 800;
+var width = 800;
+//     var data = [
+//     [1, 2],
+//     [2, 1],
+//     [2, 4], 
+//     [1, 3],
+//     [2, 2],
+//     [3, 1],
+//     [1, 1],
+
+//     [7, 3],
+//     [8, 2],
+//     [6, 4],
+//     [7, 4],
+//     [8, 1],
+//     [9, 2],
+
+//     [10, 8],
+//     [9, 10],
+//     [7, 8],
+//     [7, 9],
+//     [8, 11],
+//     [9, 9],
+// ];
+var data = [[006629,257286
+],[863612,712244
+],[108241,556542
+],[727498,871333
+],[438615,884493
+],[336619,823867
+],[312983,781861
+],[118267,023039
+],[472638,845862
+],[901749,013254
+],[805437,948156
+],[788720,148629
+],[548399,447117
+],[673526,564365
+],[153187,207677
+],[947925,905667
+],[124676,736248
+],[503809,277445
+],[533747,606774
+],[358687,285124
+],[109240,465130
+],[289212,054311
+],[044180,972356
+],[826226,011580
+],[615526,379166
+],[225226,378839
+],[557194,469823
+],[380760,051134
+],[918308,870365
+],[429713,698382
+],[585104,532898
+],[664354,262936
+],[497279,032638
+],[494283,900794
+],[910942,865033
+],[292327,220320
+],[573941,682815
+],[896106,526722
+],[717852,474880
+],[066901,269170
+],[723811,892254
+],[136152,838198
+],[675130,162445
+],[918934,161125
+],[991669,935691
+],[955091,498385
+],[087658,733204
+],[024927,052730
+],[266486,318897
+],[444316,566837
+],[897339,493131
+],[002832,411140
+],[774608,848810
+],[240958,465852
+],[683787,713824
+],[893699,571882
+],[319440,794553
+],[910580,986779
+],[054393,178279
+],[591710,914661
+],[819357,776101
+],[513412,110646
+],[088545,680406
+],[180518,673022
+],[381991,883509
+],[494198,259871
+],[601914,750385
+],[308544,049945
+],[216890,003035
+],[472283,718493
+],[205668,501027
+],[870863,977922
+],[519617,880120
+],[187082,451254
+],[098920,647960
+],[905972,667361
+],[281348,516091
+],[475183,856895
+],[404069,176053
+],[446128,795844
+],[412741,070031
+],[012135,727829
+],[939347,071562
+],[537903,736936
+],[807850,264454
+],[010086,817265
+],[185261,342807
+],[001272,127415
+],[922122,874735
+],[375592,781749
+],[193820,631751
+],[481025,657223
+],[605034,623841
+],[988237,299269
+],[978803,236746
+],[305063,153366
+],[899801,389195
+],[749549,272809
+],[652456,099006
+],[862615,248048
+],[360575,276629
+],[087764,078800
+],[507524,832051
+],[321697,136053
+],[931270,790733
+],[562576,110509
+],[856358,512482
+],[508558,760487
+],[892409,775668
+],[096352,918650
+],[616079,374612
+],[509019,069605
+],[114494,094162
+],[665684,494276
+],[903453,834377
+],[891037,551629
+],[918758,863738
+],[499191,348722
+],[033683,568752
+],[414957,454308
+],[333924,233857
+],[637057,806513
+],[443410,926990
+],[758806,676916
+],[325000,934390
+],[945892,140648
+],[682824,251931
+],[933745,954073
+],[520181,120585
+],[709403,648440
+],[902525,834503
+],[694289,433370
+],[910026,549016
+],[927344,983979
+],[654499,890955
+],[046781,186501
+],[358371,537502
+],[840493,652437
+],[652097,458306
+],[016950,879822
+],[746291,287492
+],[799300,462249
+],[178230,792556
+],[557637,722617
+],[821261,145726
+],[545335,401601
+],[733064,366784
+],[448828,755750
+],[622996,197281
+],[046778,383444
+],[864374,835010
+],[413925,943081
+],[125982,217453
+],[612078,549369
+],[618904,220518
+],[025621,399208
+],[742158,809482
+],[264917,575816
+],[536366,182017
+],[708366,881984
+],[277536,383623
+],[951273,029574
+],[158502,917701
+],[357119,116072
+],[944190,599383
+],[147044,043036
+],[770936,705333
+],[246669,428664
+],[246434,191538
+],[195341,396761
+],[847595,610859
+],[599315,219903
+],[196281,429251
+],[974392,816351
+],[914708,386673
+],[674581,829764
+],[744409,513624
+],[508835,346744
+],[609732,123933
+],[556071,620659
+],[263985,391944
+],[974305,229597
+],[421411,278270
+],[347931,755010
+],[159923,571015
+],[438252,163380
+],[590304,876264
+],[453811,412842
+],[780078,102014
+],[758964,116917
+],[394762,346489
+],[184882,305198
+],[005424,760441
+],[701072,416784
+],[977013,780876
+],[297334,811575
+],[986030,404112
+],[158233,340047
+],[021929,934403
+],[628481,566432
+],[479815,354524
+],[203550,827208
+],[653111,018230
+],[789422,459890
+],[078716,533906
+],[420864,145944
+],[555270,314025
+],[787707,860447
+],[354777,694682
+],[689918,218502
+],[442758,657921
+],[524003,070643
+],[085760,184649
+],[487640,086771
+],[574108,863364
+],[940408,972612
+],[153651,280566
+],[995190,970685
+],[554486,907934
+],[332859,732450
+],[042793,322511
+],[690824,731011
+],[298421,660676
+],[698288,893439
+],[938959,151086
+],[915677,937378
+],[715429,993379
+],[205054,234278
+],[974076,400973
+],[489944,854653
+],[043868,464273
+],[350773,705075
+],[123678,363529
+],[369201,690164
+],[917309,995816
+],[481934,074856
+],[733503,567477
+],[679382,872680
+],[420522,702330
+],[651551,954417
+],[200210,447301
+],[237335,960606
+],[840000,725038
+],[999977,523309
+],[979977,683270
+],[495508,611800
+],[228139,549793
+],[307305,797874
+],[621188,795414
+],[244303,203143
+],[410622,948957
+],[690428,190459
+],[691543,452162
+],[806296,531792
+],[266140,096077
+],[312114,365208
+],[701929,187083
+],[904560,602525
+],[469811,929290
+],[047681,679542
+],[971049,293861
+],[582989,331115
+],[645124,348861
+],[336951,658299
+],[176016,182569
+],[365797,800342
+],[297448,387823
+],[298440,477681
+],[718494,605309
+],[153223,150482
+],[890384,774532
+],[800933,054735
+],[878344,528601
+],[624616,743804
+],[175116,491137
+],[976606,703028
+],[588518,876141
+],[677077,895687
+],[195705,771216
+],[980081,495783
+],[509421,012356
+],[277694,469800
+],[462070,424897
+],[247600,003360
+],[938996,704468
+],[114437,948494
+],[512838,198856
+],[660721,502170
+],[856192,658522
+],[425373,158465
+],[972603,722745
+],[525239,022145
+],[157921,433666
+],[205236,427703
+],[732623,586175
+],[079192,406133
+],[344262,352923
+],[925197,171504
+],[108872,256433
+],[148666,207712
+],[605767,800191
+],[340302,666092
+],[132358,059028
+],[774588,323517
+],[052855,724917
+],[208848,271598
+],[778249,925563
+],[875676,093942
+],[514500,390604
+],[806331,127154
+],[295467,250760
+],[941023,215506
+],[305323,719759
+],[813485,696882
+],[557559,641610
+],[070175,912079
+],[526851,673861
+],[604698,428619
+],[588899,553992
+],[042404,957551
+],[469645,126409
+],[663524,103310
+],[662200,246775
+],[322212,858731
+],[924382,102741
+],[483330,736907
+],[384544,060579
+],[147643,862195
+],[506756,995161
+],[649117,160362
+],[875847,540013
+],[642754,324733
+],[183296,322440
+],[519949,571612
+],[339631,000938
+],[099553,229254
+],[954462,001689
+],[173533,514460
+],[808618,471832
+],[703914,422941
+],[449845,488639
+],[452282,277834
+],[688663,518686
+],[150561,764661
+],[822265,832491
+],[888908,115137
+],[421107,499953
+],[770778,472227
+],[869452,763061
+],[676123,768390
+],[475046,688599
+],[179899,080760
+],[838079,300829
+],[780545,304860
+],[347249,109134
+],[095069,393254
+],[285207,215096
+],[610913,410861
+],[973752,554348
+],[463190,670959
+],[421129,337646
+],[211124,234164
+],[194559,066423
+],[055923,347740
+],[905866,337110
+],[122375,234708
+],[305769,137321
+],[306700,902207
+],[592821,577672
+],[582884,154369
+],[574465,711226
+],[811270,761426
+],[762306,829196
+],[754301,287806
+],[479713,278711
+],[123692,130799
+],[024785,743153
+],[770525,269114
+],[598258,989634
+],[573443,539612
+],[077025,332556
+],[657132,612988
+],[309142,584273
+],[836402,198316
+],[597538,596553
+],[018581,969459
+],[718412,334932
+],[786366,800145
+],[417011,977468
+],[693202,171487
+],[902535,016663
+],[990367,888466
+],[199009,705381
+],[273939,694582
+],[462743,191398
+],[179200,751925
+],[172940,020407
+],[729204,089515
+],[817914,691763
+],[701761,100445
+],[550105,961563
+],[675248,443616
+],[092368,623392
+],[734024,645308
+],[365424,074695
+],[732158,949464
+],[635333,380422
+],[093562,925453
+],[105459,546953
+],[236395,599895
+],[076077,314491
+],[321178,396711
+],[315114,477538
+],[770333,701972
+],[894216,892386
+],[037889,596687
+],[023531,200890
+],[325559,581497
+],[647342,085801
+],[017898,530708
+],[605921,115522
+],[892855,408920
+],[325777,137258
+],[544817,860987
+],[334917,905541
+],[357687,438207
+],[536026,893384
+],[602487,890173
+],[767702,234197
+],[405571,549579
+],[851689,711579
+],[005663,643837
+],[865212,126476
+],[915440,088202
+],[041183,318263
+],[327127,889563
+],[112614,575480
+],[490139,726656
+],[595184,639823
+],[809507,473516
+],[987002,670842
+],[934059,835621
+],[662891,964271
+],[666561,962348
+],[644330,213624
+],[668466,694405
+],[088760,574634
+],[151092,859535
+],[887726,283644
+],[685021,398211
+],[026513,016495
+],[392541,146872
+],[599917,439820
+],[607710,203591
+],[237920,496570
+],[482211,452400
+],[032971,637406
+],[070511,753929
+],[137560,035884
+],[200768,134529
+],[727466,008189
+],[891034,124716
+],[052501,223513
+],[317307,834162
+],[733059,304805
+],[957710,209921
+],[898694,730168
+],[040718,431410
+],[411120,823867
+],[355593,639358
+],[393894,448059
+],[948724,800553
+],[711925,951931
+],[748477,753350
+],[134081,652340
+],[885880,518467
+],[872338,578878
+],[291117,611774
+],[914880,832426
+],[030479,163150
+],[819157,329392
+],[118718,834135
+],[440615,575905
+],[835269,245080
+],[745688,197486
+],[048260,415954
+],[789568,816299
+],[233502,646911
+],[669641,091544
+],[623165,405943
+],[563472,606659
+],[401704,583512
+],[666949,747548
+],[200107,580718
+],[275413,394392
+],[623913,912406
+],[327110,908255
+],[950979,362870
+],[340358,613544
+],[945130,026506
+],[637971,345750
+],[803192,730996
+],[353634,506151
+],[178335,478537
+],[464673,395393
+],[656000,038792
+],[094229,427348
+],[855926,527882
+],[782070,565871
+],[103183,367748
+],[119861,479509
+],[919925,440964
+],[541204,368330
+],[440074,623163
+],[313352,672026
+],[473709,184999
+],[599529,357325
+],[047117,439393
+],[176179,257527
+],[282604,892039
+],[904931,588036
+],[562273,682693
+],[295209,512287
+],[918480,334271
+],[622479,693170
+],[930169,643317
+],[027019,986013
+],[514499,114213
+],[769745,578279
+],[122672,949171
+],[335291,962614
+],[716775,064503
+],[237351,793794
+],[923025,216295
+],[873829,445219
+],[033843,979515
+],[473856,316707
+],[286989,630293
+],[996821,326416
+],[892321,124051
+],[950000,952279
+],[067648,030622
+],[741811,628950
+],[237421,227362
+],[404542,542464
+],[576003,546942
+],[109866,212036
+],[125536,754606
+],[411003,418550
+],[881771,547266
+],[260337,087270
+],[427007,328677
+],[233568,992629
+],[305425,789324
+],[006312,639142
+],[449585,733010
+],[691809,252053
+],[867386,973229
+],[020339,368978
+],[374891,363354
+],[934294,218567
+],[937367,555419
+],[039276,928452
+],[638631,794358
+],[284331,593561
+],[291590,623984
+],[294604,720864
+],[349965,039732
+],[892453,973158
+],[523789,526313
+],[749895,232873
+],[418423,807745
+],[923644,952595
+],[431481,052783
+],[572065,156503
+],[375044,899992
+],[505709,007799
+],[332330,853110
+],[558193,546131
+],[257451,100048
+],[777025,494784
+],[459327,043688
+],[446007,739658
+],[420971,614706
+],[688665,937739
+],[581682,610122
+],[629847,563605
+],[379773,571727
+],[846729,435812
+],[260445,081188
+],[973983,759775
+],[996443,117942
+],[598346,662469
+],[591138,372588
+],[713784,709316
+],[609706,659893
+],[159733,864717
+],[783327,406327
+],[442030,153506
+],[704213,228895
+],[403390,864107
+],[596862,272731
+],[303633,450491
+],[259497,662342
+],[868444,083767
+],[109637,037131
+],[040003,904175
+],[702718,035487
+],[331919,139740
+],[309397,846280
+],[720292,749793
+],[725963,247251
+],[205697,878335
+],[653908,873195
+],[090803,507783
+],[651552,013681
+],[793803,953558
+],[547101,704567
+],[083001,851698
+],[557209,775825
+],[759970,887387
+],[442701,535624
+],[033288,132905
+],[920407,170956
+],[602589,285001
+],[766181,660170
+],[282633,356586
+],[448707,499499
+],[031598,106807
+],[355539,950274
+],[410071,561650
+],[134161,433749
+],[592735,414982
+],[448920,874986
+],[575390,121231
+],[641807,290092
+],[467026,277443
+],[980253,369659
+],[899224,939957
+],[466026,463317
+],[027712,407364
+],[402983,016168
+],[668697,173313
+],[590405,490401
+],[871154,558190
+],[923671,153480
+],[939959,476298
+],[943169,921804
+],[450243,667262
+],[287052,027318
+],[975615,415159
+],[941414,672747
+],[535046,021948
+],[616145,963199
+],[997236,182568
+],[935705,831352
+],[929552,676201
+],[544030,037301
+],[624439,858191
+],[144077,899159
+],[799276,439976
+],[267795,557614
+],[202853,922697
+],[444217,550148
+],[992607,589667
+],[892785,859663
+],[820782,356507
+],[971983,382051
+],[042115,314760
+],[853807,665649
+],[432360,922078
+],[086103,083158
+],[036270,624706
+],[778378,480455
+],[110988,898798
+],[066210,534503
+],[209940,624440
+],[427190,560435
+],[432642,735375
+],[349008,855490
+],[856510,394130
+],[420743,548596
+],[461234,530871
+],[237960,648302
+],[657959,079248
+],[754598,622237
+],[434100,178711
+],[099475,074634
+],[061932,455510
+],[925240,925100
+],[412780,551488
+],[384354,765288
+],[614794,609619
+],[691042,484302
+],[889089,683909
+],[181278,128091
+],[318021,852469
+],[415226,515891
+],[808583,568594
+],[994552,531972
+],[801876,367302
+],[076030,715943
+],[026868,521232
+],[236277,883750
+],[423232,158799
+],[997149,266612
+],[549841,571201
+],[313629,099091
+],[042273,120190
+],[192922,807544
+],[390873,335321
+],[380152,931713
+],[270880,032651
+],[262911,110832
+],[375050,890615
+],[623762,724554
+],[472873,916658
+],[742717,771830
+],[277458,694159
+],[699018,866511
+],[896445,927014
+],[047727,033869
+],[409363,368384
+],[274670,872050
+],[308080,400291
+],[209962,859589
+],[609010,319777
+],[698570,351159
+],[198487,219727
+],[160722,977145
+],[758168,113917
+],[768462,498176
+],[712451,215630
+],[127297,379863
+],[431790,984496
+],[192465,757374
+],[240526,269017
+],[118375,912662
+],[857477,444374
+],[527604,173695
+],[368608,768540
+],[620351,761221
+],[499909,890903
+],[172232,728708
+],[127961,817379
+],[444908,915974
+],[505212,542940
+],[485516,331980
+],[234373,521400
+],[585651,597312
+],[218331,512278
+],[915383,486002
+],[635827,293538
+],[179871,895839
+],[755783,289489
+],[648792,208926
+],[098743,760463
+],[001860,189395
+],[089907,484526
+],[075825,967408
+],[973488,909627
+],[025808,155427
+],[694999,576762
+],[459847,231306
+],[796875,098981
+],[054096,680528
+],[436116,815397
+],[781604,430640
+],[342396,888586
+],[734664,903191
+],[636121,924984
+],[213491,159983
+],[749347,038022
+],[246770,938641
+],[808825,796520
+],[083013,816674
+],[411932,438498
+],[481784,163849
+],[365224,001955
+],[697269,833730
+],[708150,673931
+],[389400,949239
+],[563201,312432
+],[884092,071571
+],[736656,474856
+],[995644,492525
+],[583514,991168
+],[696809,201508
+],[226204,644920
+],[900843,594400
+],[043042,881068
+],[757845,271228
+],[368112,929818
+],[544509,254315
+],[301383,595590
+],[843222,349412
+],[250192,325890
+],[319788,706307
+],[051741,370828
+],[168241,422752
+],[589149,323108
+],[842993,098288
+],[087355,792193
+],[888273,184749
+],[506144,935850
+],[589196,572100
+],[519243,878590
+],[814721,780055
+],[000792,723815
+],[446471,866329
+],[425976,982805
+],[892144,250434
+],[668456,779725
+],[368329,604902
+],[296650,722890
+],[325876,294708
+],[252791,177462
+],[144851,135085
+],[179073,739013
+],[114174,321017
+],[223970,474243
+],[225486,460530
+],[547255,762917
+],[305710,188785
+],[145145,743927
+],[821123,046328
+],[605813,476859
+],[259396,992006
+],[315326,846864
+],[742006,297847
+],[375246,918568
+],[812085,216883
+],[073778,932654
+],[180939,728339
+],[966497,902376
+],[044954,032084
+],[440641,590693
+],[459468,144497
+],[330803,046668
+],[685902,277102
+],[547868,631363
+],[168809,284440
+],[411000,522266
+],[490620,146487
+],[700527,942032
+],[720415,510528
+],[907692,992621
+],[644298,568466
+],[161940,099292
+],]
+var schools = ["ofqOS9 School","STuBWU School","uiCZqO School","pTquVg School","6dnfdc School","MmXi5z School","JEX9XE School","QjoWil School","7WbU6Q School","0lJhzS School","yWF1sW School","7cxfdk School","53o7QY School","VQb2hX School","54eUKz School","qSG1nh School","22oaYo School","LKSN4T School","vTaRok School","mNiSG5 School","MhQ9Ee School","6HPdjc School","IMCZ36 School","F7WWqB School","6K3EQF School","jjDaZ3 School","H37YPu School","jWBxI5 School","jK9OZr School","zu8rAf School","JQqz6G School","JusxUM School","KDgm0Z School","TiErar School","q1gQKg School","MiEeP4 School","kutAQP School","EuxR0I School","lB0ifs School","hFI6i7 School","ESqx81 School","ER1pjr School","0gba2x School","YbPaSA School","uegdKi School","BziC8N School","K5nuVN School","eXUJrB School","6fnE8c School","7gVyAd School","g8RX6x School","IyTVN9 School","kXIlD1 School","3Pdmyr School","PrSB9O School","JQXTvj School","Y0qOaU School","sOsFpg School","ZktQcU School","mxUpKs School","hIOS7d School","MGdF0F School","IFTHyq School","RJhl9A School","lVZCwP School","uReHh6 School","FqMSuk School","fNDR8l School","s15aSM School","Fxq9vQ School","sQKaNb School","S7uiMV School","7QVBKf School","3WQbIV School","7Zgz0y School","XzJge2 School","1v8IGO School","PNtzmP School","Leh0ua School","zYB2Po School","u7S4iZ School","JV2EGf School","iHMqkR School","etcSXP School","WlRUDZ School","qoqyK3 School","GOEfg0 School","uDmMaW School","OlQ53W School","tA1WLU School","joMpQr School","7IFIql School","HR4Rde School","eBvdLk School","aa8hSU School","GJ9YRQ School","ILK6Gx School","3Ag53d School","rewC17 School","BkFDgO School","FqM3XS School","9Yk99e School","P3Z1yH School","6sSn4l School","PHJO2c School","HnwpOj School","AVnpOV School","VYLv8x School","jN8veU School","1EeqVJ School","nsnfzu School","KIDFcP School","gIf8gU School","RXZnoo School","TX5Cy7 School","2tkKcs School","JPPriL School","gRIrXE School","a2q9Ln School","itXYz6 School","7ZmMPQ School","yynklL School","Qra1SV School","tQgTiL School","g8b9iP School","0V9Gfc School","PjCWzw School","kOvl9Z School","qQGoFa School","x4ewou School","BLlEGv School","RWqvqQ School","xNVsQo School","Wxmu4Z School","OIYCQr School","Bmnkfp School","kMy0Jf School","jxix4N School","zBhMQO School","VAMlZW School","BQcc4x School","z44OzZ School","H6isKU School","dgPThZ School","h0vLoi School","u9dgjs School","NIo13q School","bO4fEg School","Is8zOc School","WL4vAp School","fsBi7W School","5T8WXM School","Spj6bj School","kNwmmK School","xRu2xP School","uOa9vO School","wLEUlm School","AHYN69 School","MNHsZb School","5oP0I4 School","YhPS5A School","QqkuTL School","MI0HLq School","01XALD School","0h8Otr School","LCOfMN School","WeDDxd School","JsR28G School","TP8xoX School","jBQ7wO School","AnVUeF School","wzkN8v School","gjfQwM School","lck9n2 School","cBUMj2 School","gdCxiA School","Jql6gP School","KgTBsW School","lhHEfF School","YljOul School","K2pVoy School","snVNQ4 School","RhaHfn School","LAWx43 School","zFSGf7 School","QqLJ5E School","MyGL1F School","9VKd9T School","oWrRKx School","UbDe14 School","UmK7Nk School","NlNojO School","n17O8A School","homUb3 School","qsZ3hh School","VryTPi School","3rfLBf School","Xpu3g0 School","v4og5y School","yrU2ve School","H3exps School","DWMXCW School","r9Ib3u School","eo3hqo School","yHFh1f School","T25776 School","LR8pgB School","tf8i35 School","pCVuu7 School","CmFLFh School","JDWFUq School","kPpmQz School","MaCRTa School","SgCEQe School","Xh5pJE School","NEmwka School","YXVJ4L School","SGOYVv School","GkNZrw School","FKhM2k School","ssCx1U School","WX5fWZ School","OUnVny School","tJoyTH School","MO48pm School","GhcoEm School","9wrByL School","b1BFyb School","XsO8Nk School","LbEAdA School","azPWXj School","C3FmW8 School","TPAKqb School","7JxboP School","n7sNyn School","NK7zPR School","EvdMtp School","8H2EA3 School","inFxIo School","k7ve07 School","lBaSXD School","7NlVx7 School","cgtsyA School","5mmBKE School","Vzc2IT School","y6QUIG School","Hr7UN8 School","QObr37 School","OtfCZC School","euBVUq School","5aOwtw School","IuB8um School","UF4ltj School","L7SS2W School","7HzuMj School","7agcm8 School","Mk0PDX School","UMPNEc School","eiYyjX School","aX3jWl School","i2XFqG School","h7EOok School","tXs7R9 School","zxwoEx School","morEO0 School","rzoLVB School","qJpFKn School","1ispSL School","KespdU School","FPsv00 School","J5VA4H School","esyKC5 School","ckiZ2U School","q5GOrP School","K0H6Ac School","5T6iSn School","0I6axo School","lCqCgv School","xO0MYR School","Ookecw School","DRaUiI School","pozYJ7 School","my3aoG School","yrRUcF School","owRXQw School","M5Izg6 School","SKgEm9 School","rKzuDZ School","AThoDN School","AxZBR6 School","grTSJT School","eBn9rV School","vcUbp4 School","LZ50Wm School","m6UTJq School","hRdUdk School","jcOnJS School","Zdlrxa School","QtNyqC School","hjfxA8 School","E0U4wj School","GhaMnb School","2IJE2h School","1hnAVh School","D2pIF1 School","awPu4R School","TrUIEp School","yQMElt School","w8Oi0n School","YquyoY School","GrrgER School","178Fn7 School","ODXSBc School","NW2mVE School","EWML0m School","kwQuEN School","wRqLAf School","6cZ3fr School","J0wAlb School","n41Tt9 School","KKr1mI School","S0KbW5 School","NYfUh3 School","Da6YOQ School","UHbdOP School","KKFVMY School","RSMJ09 School","71Wr2I School","j6Sgzu School","AsXkYW School","6uCgQq School","vQKpVK School","wd8hcK School","N1cb7c School","1KuCfs School","zwXGQh School","31jWXC School","N6GzOQ School","xXmpfp School","dmrPwk School","m5ymwP School","DgdY5X School","Sh1FTc School","YlKq4m School","b2Esuu School","dNbG5r School","WOCidC School","ioGxCR School","dcFMSw School","B6C3ml School","QqzvLq School","fzfSHh School","b47Cwq School","BEx5Zy School","MuLByV School","2qL4aL School","nzY1Hz School","DOe8at School","wEBWdv School","iUuMIP School","GI6p0S School","0Bnk1n School","BReKCq School","qWiVJL School","QLCobe School","OY129l School","i4iryp School","L97KT2 School","POhXqi School","dBuymk School","kDxel6 School","xeMGRJ School","ymgJzs School","CNOEcI School","ZjCo3e School","BpudHv School","DkRv2G School","ve64PK School","vu7YG4 School","wCHnUa School","LYUoIF School","elmo0L School","GL0O5e School","klRzF9 School","AhVtxa School","EgNVPR School","s7couR School","dXKLnS School","rIYN7E School","qEefP8 School","frScGM School","I6F2r6 School","e9nwnF School","AJhwDC School","rRZuIT School","mLpx1b School","0b0VMF School","6Hzukh School","dSlRCD School","8LrZMr School","xEMW45 School","pTHinR School","eY108l School","maKJlS School","cKk7Ga School","wqbALa School","Z6NLDs School","G7svyk School","0RX7hI School","aKmu11 School","C7f8PJ School","G2srkB School","cEONWM School","tpasbG School","fjxKJi School","kliCAR School","mv8FI2 School","ui8j7u School","cYApAU School","707XUB School","7F8ZyL School","Jx6mrb School","fdoNs5 School","hjbqa0 School","8wDIaO School","S8v7kd School","34Mkf0 School","5XbScY School","IoymHW School","qhAFhA School","N5Ogpa School","cX3j67 School","COEl05 School","icWaPk School","OC3Sxq School","r08vMz School","13JDxh School","1xhqR5 School","0xLFy2 School","wMzSDd School","oUvZvl School","Z7zzCe School","yXAPpD School","uXTi5U School","njzNCf School","Z622Cm School","NgzrTl School","WXiPpM School","NN8zIz School","hHuBxQ School","zXdMDS School","gFppp6 School","wZVnDv School","x1iAz8 School","HCAipg School","oAOvlD School","Td8QYo School","rpYPdW School","LMdY49 School","FnWwGy School","q6SR0X School","kiiv2k School","h9pUCa School","NxzeDn School","9XBUhS School","Jd7QKm School","bnF9Wx School","ne5Dbt School","Pg76tt School","VLYh3f School","LCoIBl School","KmCUxu School","xEqw4J School","aJntoI School","x8XDpx School","ArkUVW School","UThGoz School","I8jp3d School","fBfufj School","AktYwX School","Wq4HdZ School","XatKPF School","iNcxak School","wpklQY School","HQIZrr School","5V0h9n School","i5dFWz School","Ari3Z8 School","MseVwt School","TJfnJv School","ixwoKK School","I48qEQ School","KmZe0X School","ncdLd9 School","HfjTm2 School","C0mYcu School","wQGnCc School","tfMDIW School","lU2Czk School","U03ebd School","hk9Tmg School","2gYOzR School","2Ua22L School","reDnmQ School","cmqtHg School","o7ePuT School","I4Cipd School","tIjwdK School","VwoPnK School","EOYeAj School","ZRzDRG School","afuUac School","pGpR95 School","JB7Mzk School","j2s2P2 School","JIMZxH School","IlYeAM School","QZTCN1 School","lq9iyZ School","0PAHkk School","gj2nGC School","nPtu7q School","K5q2cc School","gBKVvc School","NUZ6SR School","bQ8aOh School","e2OxVn School","imtwgY School","xMJCot School","zOf4Oi School","hKYXA5 School","kF1KBp School","QTPfDn School","20QpZW School","dCl4Lm School","1XG19J School","jzuPgL School","xuJwbn School","SwrOVx School","CHMsE5 School","aZ7k7C School","Vs1OOS School","RphCge School","5fCfty School","0w3FMc School","s3mNfJ School","JzJjE0 School","ze1x0Y School","e5yw6C School","Z3RcOg School","Hb0tuL School","VN9wd3 School","OSGbHu School","TbDBeY School","JlJ5k0 School","vSqXtE School","R4r7rk School","KYGg69 School","0Eq3LR School","rn3dcA School","943WeH School","QnWQ0j School","8GGIw6 School","oeRqew School","w3Fo2s School","5QAWPa School","rZlKG1 School","eDROxD School","H14Mn0 School","xpXkUc School","CTbN9i School","uM8UZ3 School","WUUyBq School","uOurTr School","1gBBR3 School","JsyqCx School","bomYTC School","0MNQ2l School","0R2XlG School","YVOMHL School","bMgNgs School","DZaStX School","6xFbPX School","7eNZDD School","QWEuRO School","lo909d School","yZBqet School","Lz0o3c School","CB933L School","x0mBFN School","6ODPmC School","7HGRah School","MTyJLq School","wusKXG School","IAYP2P School","Y6oO6k School","QF9Imy School","nG4jxS School","H4kCtP School","VjGOLO School","53lOL3 School","tG1C6G School","12bmAU School","xywmty School","xQ3J2C School","cQHeSH School","lZtcDD School","SEDndU School","9SzzR6 School","AUx6Oj School","MjA15S School","EunEsS School","otJwHE School","klzrKH School","wYYnDp School","HYpQso School","CPl53R School","Al48vX School","hJxZRj School","lce1HM School","puLc06 School","jkgBhX School","lRsTcj School","JvNh4x School","F6xOkz School","6FZy1t School","c3ue4r School","rKfN5G School","sxM47U School","WElwj3 School","o84m4Q School","i44kWe School","TWw6Uj School","NRoZyh School","8mSLCD School","YEp4cQ School","hLyut9 School","q04BgA School","PqoIB5 School","S0nQzu School","KztGoS School","aOeynE School","Yu1llD School","PYAs0t School","ViBD1a School","UsDLUS School","gbnfvX School","gm0hUr School","zjahsp School","IHSslB School","DUg6t4 School","i7jeGa School","VDFt67 School","9UKzWW School","rz70Gr School","4AWbja School","j18b1J School","qragkR School","9HXO3U School","bsqfO4 School","uj6OqS School","BrUsgY School","6VqOEs School","rAOSG1 School","ZNiYnN School","VkNW1o School","tDJnvH School","Z7oEXZ School","oqY42U School","WR3Wpn School","sXfCJE School","uTjwkX School","LPvSda School","3aJSQp School","kpmMOl School","ZQwIqQ School","chcFiV School","dYPFIM School","YMhm4W School","eYIbj3 School","AezzCv School","MNWMfi School","axqc1B School","hmHMAd School","XL825L School","hOv0vp School","lMfRtn School","KZ2rD7 School","SbMKTz School","oyo48c School","b63CU6 School","mqPCHZ School","epPPAE School","56demb School","F965sG School","26qDQO School","tTudzo School","obQzcT School","Sbxmxs School","FW2ChF School","pUte6g School","v7gEpJ School","gxv4H0 School","Mm3PXD School","99TeFR School","pYmbLL School","I7OaAX School","ErRqXE School","K3YUPT School","h8gWIw School","1EGclT School","ptnKk0 School","v86Tq7 School","yYZF1V School","PopgQR School","0mau7w School","dplPSF School","fpkf73 School","CYdgpD School","YUG96T School","ofXZp9 School","eTqRYC School","gfbCcN School","0hfBdK School","ZsGpjA School","0EhYhj School","dHmNUU School","ZdfrFd School","8dtoPo School","AOScdv School","JDTpVa School","4j2JFa School","aZu2T3 School","vI1cqt School","lgtcp3 School","kLsYAx School","BgPGzi School","ebDnLu School","1jUCbx School","gmaEAK School","Q9Ht90 School","fECVlj School","e0saGx School","dQ2gfV School","NnApcw School","BD2BeR School","Dv2y6B School","5Nrtst School","CRvTaq School","Q9dmUk School","YyiLYB School","Mfn9UG School","omrJfH School","6rbwC0 School","mJxtFm School","3lIlkL School","bVjn6F School","sxQeaF School","7jobfH School","Aglvr7 School","9QBdCa School","F1FiBN School","xjSKJ1 School","7XayxY School","Ajlv7k School","fTLPcz School","HWx7tL School","DJxH3O School","Hmxerh School","n68Doa School","GiGuan School","AF0NOn School","gTfT2o School","0SvwFQ School","aIVAtC School","PmDeZW School","iV6Dpl School","OlJk1y School","8y0rIv School","ySCqZ8 School","nIan8W School","HcKUq8 School","6a46LG School","lPo2QM School","yZkHZ3 School","uI2Eke School","PqvioY School","xYrm4z School","ELYErG School","lIADOT School","fUu6EV School","GIfLge School","zpy6ls School","5OsOyo School","8dcHii School","WRKe69 School","DYZqTa School","vjABzG School","zhZJRZ School","HKHqDh School","QRG5dE School","Ifh0v7 School","csg44d School","O8YIFb School","VJDSnH School","46ZxHB School","JjpLI5 School","7mGKB8 School","Tahrty School","RaF1mS School","V1C5gf School","L8tAIK School","RvHmKN School","G9NMKX School","8cad9U School","uWX6Hr School","rNC7DC School","8pxEJd School","YWNT8C School","1fXGVg School","6lTc21 School","RAW5bs School","lIakYM School","CX20se School","w1gHmi School","A1ToCm School","RdVbya School","hNZA4l School","FfxO5g School","RdZbzn School","sSQ5wL School","ejAyRd School","9LsLO4 School","CXQ1ty School","Xfu4Ru School","asIshn School","efcGTR School","nZ4qDj School","A58fvK School","t4xamg School","bMTDvC School","mIfS9C School","MiLu7g School","EuQq3J School","6WoM85 School","KO5H8Z School","k7pwiL School","5Lqz7N School","AO41WD School"]
+
+
+var means = [];
+var assignments = [];
+var dataExtremes;
+var dataRange;
+var drawDelay = 80;
+var no_of_teams = 10;
+var clusters = new Array();
+var nameclusters = new Array();
+var routes = new Array();
+
+// function findRoutes() {
+//     for(var i = 0; i < no_of_teams; i++) {
+//         var routes[i] = new Array;
+//         var piq = clusters[i][0];
+//         routes[i].push(piq);
+//         for(var j = 0; j < clusters[i].length; j++) {
+            
+//         }
+//     }
+// }
+
+
+function calcRoute(z) {
+var cities = [];
+var totalCities = clusters[z].length;
+
+var recordDistance;
+var bestEver;
+
+function setup() {
+  createCanvas(400, 300);
+  for (var i = 0; i < totalCities; i++) {
+    var v = clusters[z][i];
+    cities[i] = v;
+  }
+
+  var d = calcDistance(cities);
+  recordDistance = d;
+  bestEver = cities.slice();
+
+}
+
+function draw() {
+  background(0);
+  fill(255);
+  for (var i = 0; i < cities.length; i++) {
+    ellipse(cities[i].x, cities[i].y, 8, 8);
+  }
+
+  stroke(255);
+  strokeWeight(1);
+  noFill();
+  beginShape();
+  for (var i = 0; i < cities.length; i++) {
+    vertex(cities[i].x, cities[i].y);
+  }
+  endShape();
+
+  stroke(255, 0, 255);
+  strokeWeight(4);
+  noFill();
+  beginShape();
+  for (var i = 0; i < cities.length; i++) {
+    vertex(bestEver[i].x, bestEver[i].y);
+  }
+  endShape();
+
+
+
+  var i = floor(random(cities.length));
+  var j = floor(random(cities.length));
+  swap(cities, i, j);
+
+  var d = calcDistance(cities);
+  if (d < recordDistance) {
+    recordDistance = d;
+    bestEver = cities.slice();
+  }
+}
+
+function swap(a, i, j) {
+  var temp = a[i];
+  a[i] = a[j];
+  a[j] = temp;
+}
+
+
+function calcDistance(points) {
+  var sum = 0;
+  for (var i = 0; i < points.length - 1; i++) {
+    var d = dist(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
+    sum += d;
+  }
+  return sum;
+}
+}
+
+function createClusterList() {
+    for(var i = 0; i < no_of_teams; i++) {
+        clusters[i] = new Array();
+    }
+    for(var i = 0; i < 849; i++) {
+        var ind = assignments[i];
+
+        clusters[ind][clusters[ind].length] = data[i];
+    }
+}
+
+function createNameClusterList() {
+    for(var i = 0; i < no_of_teams; i++) {
+        nameclusters[i] = new Array();
+    }
+    for(var i = 0; i < 849; i++) {
+        var ind = assignments[i];
+
+        nameclusters[ind][nameclusters[ind].length] = schools[i];
+    }
+}
+
+function setup() {
+
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+
+    dataExtremes = getDataExtremes(data);
+    dataRange = getDataRanges(dataExtremes);
+    means = initMeans(no_of_teams);
+
+    makeAssignments();
+    draw();
+
+    setTimeout(run, drawDelay);
+}
+
+function getDataRanges(extremes) {
+    var ranges = [];
+
+    for (var dimension in extremes)
+    {
+        ranges[dimension] = extremes[dimension].max - extremes[dimension].min;
+    }
+
+    return ranges;
+
+}
+
+function getDataExtremes(points) {
+    
+    var extremes = [];
+
+    for (var i in data)
+    {
+        var point = data[i];
+
+        for (var dimension in point)
+        {
+            if ( ! extremes[dimension] )
+            {
+                extremes[dimension] = {min: 1000, max: 0};
+            }
+
+            if (point[dimension] < extremes[dimension].min)
+            {
+                extremes[dimension].min = point[dimension];
+            }
+
+            if (point[dimension] > extremes[dimension].max)
+            {
+                extremes[dimension].max = point[dimension];
+            }
+        }
+    }
+
+    return extremes;
+
+}
+
+function initMeans(k) {
+
+    if ( ! k )
+    {
+        k = 3;
+    }
+
+    while (k--)
+    {
+        var mean = [];
+
+        for (var dimension in dataExtremes)
+        {
+            mean[dimension] = dataExtremes[dimension].min + ( Math.random() * dataRange[dimension] );
+        }
+
+        means.push(mean);
+    }
+
+    return means;
+
+};
+
+function makeAssignments() {
+
+    for (var i in data)
+    {
+        var point = data[i];
+        var distances = [];
+
+        for (var j in means)
+        {
+            var mean = means[j];
+            var sum = 0;
+
+            for (var dimension in point)
+            {
+                var difference = point[dimension] - mean[dimension];
+                difference *= difference;
+                sum += difference;
+            }
+
+            distances[j] = Math.sqrt(sum);
+        }
+
+        assignments[i] = distances.indexOf( Math.min.apply(null, distances) );
+    }
+
+}
+
+function moveMeans() {
+
+    makeAssignments();
+
+    var sums = Array( means.length );
+    var counts = Array( means.length );
+    var moved = false;
+
+    for (var j in means)
+    {
+        counts[j] = 0;
+        sums[j] = Array( means[j].length );
+        for (var dimension in means[j])
+        {
+            sums[j][dimension] = 0;
+        }
+    }
+
+    for (var point_index in assignments)
+    {
+        var mean_index = assignments[point_index];
+        var point = data[point_index];
+        var mean = means[mean_index];
+
+        counts[mean_index]++;
+
+        for (var dimension in mean)
+        {
+            sums[mean_index][dimension] += point[dimension];
+        }
+    }
+
+    for (var mean_index in sums)
+    {
+        console.log(counts[mean_index]);
+        if ( 0 === counts[mean_index] ) 
+        {
+            sums[mean_index] = means[mean_index];
+            console.log("Mean with no points");
+            console.log(sums[mean_index]);
+
+            for (var dimension in dataExtremes)
+            {
+                sums[mean_index][dimension] = dataExtremes[dimension].min + ( Math.random() * dataRange[dimension] );
+            }
+            continue;
+        }
+
+        for (var dimension in sums[mean_index])
+        {
+            sums[mean_index][dimension] /= counts[mean_index];
+        }
+    }
+
+    if (means.toString() !== sums.toString())
+    {
+        moved = true;
+    }
+
+    means = sums;
+
+    return moved;
+
+}
+
+function run() {
+
+    var moved = moveMeans();
+    draw();
+
+    if (moved)
+    {
+        setTimeout(run, drawDelay);
+    }
+
+}
+function draw() {
+
+    ctx.clearRect(0,0,width, height);
+
+    ctx.globalAlpha = 0.3;
+    for (var point_index in assignments)
+    {
+        var mean_index = assignments[point_index];
+        var point = data[point_index];
+        var mean = means[mean_index];
+
+        ctx.save();
+
+        ctx.strokeStyle = 'blue';
+        ctx.beginPath();
+        ctx.moveTo(
+            (point[0] - dataExtremes[0].min + 1) * (width / (dataRange[0] + 2) ),
+            (point[1] - dataExtremes[1].min + 1) * (height / (dataRange[1] + 2) )
+        );
+        ctx.lineTo(
+            (mean[0] - dataExtremes[0].min + 1) * (width / (dataRange[0] + 2) ),
+            (mean[1] - dataExtremes[1].min + 1) * (height / (dataRange[1] + 2) )
+        );
+        ctx.stroke();
+        ctx.closePath();
+    
+        ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+
+    for (var i in data)
+    {
+        ctx.save();
+
+        var point = data[i];
+
+        var x = (point[0] - dataExtremes[0].min + 1) * (width / (dataRange[0] + 2) );
+        var y = (point[1] - dataExtremes[1].min + 1) * (height / (dataRange[1] + 2) );
+
+        ctx.strokeStyle = '#333333';
+        ctx.translate(x, y);
+        ctx.beginPath();
+        ctx.arc(0, 0, 5, 0, Math.PI*2, true);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.restore();
+    }
+
+    for (var i in means)
+    {
+        ctx.save();
+
+        var point = means[i];
+
+        var x = (point[0] - dataExtremes[0].min + 1) * (width / (dataRange[0] + 2) );
+        var y = (point[1] - dataExtremes[1].min + 1) * (height / (dataRange[1] + 2) );
+
+        ctx.fillStyle = 'green';
+        ctx.translate(x, y);
+        ctx.beginPath();
+        ctx.arc(0, 0, 5, 0, Math.PI*2, true);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.restore();
+
+    }
+
+}
+
+setup();
+
+console.log(assignments);
+
+createClusterList();
+
+console.log(clusters);
+
+createNameClusterList();
+
+console.log(nameclusters);
+
+for(var w = 0; w < no_of_teams; w++) {
+    calcRoute(w);
+}
+
+
+    var div = document.getElementById("show");
+    div.innerHTML = "";
+    div.innerHTML += "Team 1: ";
+    div.innerHTML += schools[Math.floor(Math.random() * 83 + 0)] + "<br><br>";
+    div.innerHTML += "Team 2: ";
+    div.innerHTML += schools[Math.floor(Math.random() * 83 + 83)] + "<br><br>";
+    div.innerHTML += "Team 3: ";
+    div.innerHTML += schools[Math.floor(Math.random() * 83 + 166)] + "<br><br>";
+    div.innerHTML += "Team 4: ";
+    div.innerHTML += schools[Math.floor(Math.random() * 83 + 249)] + "<br><br>";
+    div.innerHTML += "Team 5: ";
+    div.innerHTML += schools[Math.floor(Math.random() * 83 + 332)] + "<br><br>";
+    div.innerHTML += "Team 6: ";
+    div.innerHTML += schools[Math.floor(Math.random() * 83 + 415)] + "<br><br>";
+    div.innerHTML += "Team 7: ";
+    div.innerHTML += schools[Math.floor(Math.random() * 83 + 498)] + "<br><br>";
+    div.innerHTML += "Team 8: ";
+    div.innerHTML += schools[Math.floor(Math.random() * 83 + 581)] + "<br><br>";
+    div.innerHTML += "Team 9: ";
+    div.innerHTML += schools[Math.floor(Math.random() * 83 + 664)] + "<br><br>";
+    div.innerHTML += "Team 10: ";
+    div.innerHTML += schools[ Math.floor(Math.random() * 83 +747)] + "<br><br>";
+   /* div.innerHTML = schools[Math.random() * (83 - 0) + 0] + "<br>";
+    div.innerHTML = schools[Math.random() * (83 - 0) + 0] + "<br>";
+    div.innerHTML = schools[Math.random() * (83 - 0) + 0] + "<br>";
+    div.innerHTML = schools[Math.random() * (83 - 0) + 0] + "<br>";*/
+    
+
+
+
+    </script>
+</html>

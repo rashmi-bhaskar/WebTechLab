@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+	<title>Cogito</title>
+	<link rel="stylesheet" type="text/css" 
+  href="{% static 'css/styler2_new.css' %}">
+</head>
+<body style="background-image: url('{% static 'css/glenn-carstens-peters-P1qyEf1g0HU-unsplash.jpg' %}');">
+	<div class="navbar">
+		<ul>
+			<a href="http://localhost:8081/Cogito/page1.html"><li>Cogito</li></a>
+			<a href="http://localhost:8081/Cogito/page2.html"><li>HOME</li></a>
+			<a href="http://localhost:8081/Cogito/page3.html"><li>ABOUT</li></a>
+			<a href="http://localhost:8081/Cogito/chat1.html"><li>Chat With Us</li></a>
+					</ul>
+	</div>
+	<br>
+	<div class="a2">Trending Events...</div>
+	<!-- <div class="hover1">
+     <a>DOOR-TO-DOOR SALES<span><img src="door.png" alt="image" height="100" /></span></a>
+</div>
+<div class="hover2">
+     <a>ADVERTISING CAMPAIGN<span><img src="ad.jpg" alt="image" height="100" /></span></a>
+</div>
+<div class="hover3">
+     <a>EFFICIENT MARKETING PLAN<span><img src="plan.jpg" alt="image" height="200" width="300" /></span></a>
+</div>
+<div class="hover4">
+     <a>CAMPAIGN FOR COLLEGE FESTS<span><img src="collegefests.jpg" alt="image" height="200" /></span></a>
+</div>
+
+</body>
+</html> -->
+
+<br>
+<div class="bd-example">
+  
+   
+    
+      
+   
+    
+<br>
+<br>
+<br>
+<button onclick="location.href='{% url 'script' %}'"   style="width: 100%;
+                  background:none;
+                  border:2px solid #01ff87;
+                  color: white;
+                  padding: 5px;
+                    font-size: 25px;
+                  cursor: pointer;
+                  margin: 15px 0;
+                  font-family: Candara;" id="rem">click here</button> <hr>
+        {% if data %}
+        
+<image  style="width: 760px; height: 400px;" src = "{% static 'Exact/wcloud_from_exact.png' %}"/>
+ <script>
+          var btn = document.getElementByID("rem");
+          btn.remove();
+        </script>
+
+        {% endif %}
+
+ </div>
+
+</body>
+</html>

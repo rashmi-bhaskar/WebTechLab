@@ -1,0 +1,83 @@
+body{
+	margin: 0;
+	background:#050119;
+	background-size: cover;	
+	background-image: url('abstract-art-black-background-1040499.jpg');
+}
+.navbar{
+	margin-top: 0;
+	padding: 0;
+	/*height: 20vh;*/
+	/*height: 100%;*/
+	/*margin: 0;*/
+	background-color: rgba(0,0,0,0.5);
+	/*border:2px solid #32139b69;*/
+}
+ul{
+	margin: 0;
+}
+.navbar li{
+	/*margin-top: 0;*/
+	/*animation: bounceIn 1s ease-in;*/
+	margin: 0;
+
+	display: inline-block;
+	font-family: Candara;
+	font-size: 120%;
+	padding: 30px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: white;
+	/*background-color: rgba(0,0,0,0.8);*/
+}
+.navbar li:hover{
+	/*box-shadow: rgba(255,255,255,0.5);*/
+	/*transform: scale(1.1);*/
+	/*transition: all 0.5s;*/
+	/*animation: bounceIn 1s ease-in;*/
+	background-color: #01ff87;
+	color: black;
+	/*transform: scale3d(1.1,1.1,1.1);*/
+
+}
+
+.a1{
+	padding: 50px;
+	margin: 100px;
+	padding-bottom: 50px;
+	color: white;
+	border:6px solid #01ff87;
+	background-color:rgba(1,255,135,0.1);
+	/*background-color:sd*/
+	font-size: 1.5rem;
+}
+.a2{
+	margin: 100px;
+	padding: 50px;
+	padding-bottom: 50px;
+	color: white;
+	background-color:rgba(1,255,135,0.1);
+	/*border-radius: 2px solid #01ff87;*/
+	border:6px solid #01ff87;
+	/*opacity: 50%;*/
+	font-size: 1.5rem;
+
+}
+.a2 li{
+	display: list-item;
+}
+.a3{
+	margin: 100px;
+	padding: 50px;
+	padding-bottom: 50px;
+	color: white;
+	background-color:rgba(1,255,135,0.1);
+	/*border-radius: 2px solid #01ff87;*/
+	border:6px solid #01ff87;
+	/*opacity: 50%;*/
+	font-size: 1.5rem;
+
+}
+.a3 li{
+	display: list-item;
+}

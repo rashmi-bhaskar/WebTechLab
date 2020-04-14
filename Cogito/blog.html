@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ABOUT</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<style>
+        a:link { color: #01cc85; }
+        a:visited { color: #01aa85; }
+        a:active { color: white; }
+    </style>
+	<link rel="stylesheet" type="text/css" href="blog.css">
+	<script>
+var obj ={
+    xhr: new XMLHttpRequest(),
+    getData: function() {
+    this.xhr.open("GET","rss.xml",true); //Cant do this.
+    this.xhr.open("GET","getRSS.php",true); //Cant do this.
+    this.xhr.onreadystatechange = this.showData;
+    this.xhr.send();
+    },
+                
+    showData: function() {
+    if(this.readyState==4 && this.status==200){
+	root=this.responseXML.documentElement;
+	var headTitle = root.getElementsByTagName("title")[0].firstChild.nodeValue;
+	var l = root.getElementsByTagName("link");
+	var d = document.createElement("div");
+	d.classList.add("a1");
+	var t = document.createElement("a")
+	t.href = l;
+	t.innerHTML = headTitle+"<br><br>";
+	d.appendChild(t);
+	var items = root.getElementsByTagName("item");
+	for(var i=0;i<items.length;i++){
+		var title = items[i].getElementsByTagName("title")[0].firstChild.nodeValue;
+		console.log("Title: ",title);
+		var link = items[i].getElementsByTagName("link")[0].firstChild.nodeValue;
+		console.log("Link: ",link);
+		var anchor = document.createElement("a");
+		anchor.href = link;
+		anchor.innerHTML = "<br>"+title+"<br>";
+		d.appendChild(anchor);
+		var des = items[i].getElementsByTagName("description")[0].firstChild.nodeValue;
+		console.log(des.length);   
+		var subs = des.substring(0,200);
+		console.log(subs);
+		var p = document.createElement("p");
+		p.innerHTML = subs;
+							
+	        if(des.length>200){
+			p.innerHTML += "<span id='more' style='display:none'>"+des.substring(200,des.length)+"</span>";
+			var b = document.createElement("button");
+			b.innerHTML = "Read More";
+			b.style.width = "100%";
+			b.style.background = "none";
+			b.style.border = "2px solid #01ff87";
+			b.style.color = "white";
+			b.style.padding = "5px";
+			b.style.fontSize = "18px";
+			b.style.cursor = "pointer";
+			b.style.margin = "15px";
+			b.onclick = showDes;
+			}
+		p.innerHTML += "<br>";
+		
+		p.appendChild(b);
+		d.appendChild(p);
+		document.body.appendChild(d);
+			}
+		  }
+	    },
+				
+        }
+		showDes = function(){
+		   console.log(this.parentElement.firstChild.nextElementSibling);
+		   sp = this.parentElement.firstChild.nextElementSibling;
+		   sp.style.display = "inline";
+		   this.remove();
+	       }
+        </script>
+</head>
+<body>
+		<div class="navbar" ng-app="">
+		<ul>
+			<a ng-href="http://localhost:8081/Cogito/page1.html"><li>Cogito</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page2_new.html"><li>HOME</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page3.html"><li>ABOUT</li></a>
+			
+			<a ng-href="http://localhost:8081/Cogito/loginpage.html"><li>FEEDBACK</li></a>
+					</ul>
+	</div>
+		<div class="a1"><p>Which blogs do you follow and read?</p><p>
+If you're into digital marketing, then you need to identify marketing blogs that will nudge you to keep at your game.
+You already know there are thousands of online marketing blogs out there and it gets overwhelming for marketers and businesses to find and read the right ones.</p><p>
+
+But we've done all the heavy liftings for you. If you religiously follow and read the blogs below, your insights, experience, and conviction will take on wings and your business will fly.
+It's high time you stay updated on everything that's happening in the marketing industry worldwide.</p>
+			<button onclick="obj.getData()" style="width: 100%;
+									background:none;
+									border:2px solid #01ff87;
+									color: white;
+									padding: 5px;
+								    font-size: 18px;
+									cursor: pointer;
+									margin: 15px  ;">Here's a list of 20 best marketing-related blogs that you should read and learn from....</button><br>
+		</div>
+		
+</body>
+</html>

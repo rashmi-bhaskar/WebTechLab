@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FEEDBACK</title>
+	<link rel="stylesheet" type="text/css" href="loginstyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script type="text/javascript">
+		function get()
+		{
+			var ifr = document.getElementById("ifr");
+			var day1 = document.getElementById("day1");
+			var day2 = document.getElementById("day2");
+			if(day1.value.length ==0 || day2.value.length == 0)
+			{
+				alert("Do not leave the fields empty");
+			}
+			else
+			{
+				ifr.src = "http://localhost:8081/Cogito/get.php?day1="+day1.value+"&day2="+day2.value;
+			}
+
+		}
+
+		function update(str)
+		{
+			var act_arr = str.split(";");
+			var day1 = document.getElementById("remove");
+			
+			day1.remove();
+
+			var h = document.getElementById("h1");
+			h.innerHTML = "Thank you :)";
+		}
+	</script>
+</head>
+<body >
+	<div class="navbar" ng-app="">
+		<ul>
+			<a ng-href="http://localhost:8081/Cogito/page1.html"><li>Cogito</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page2_new.html"><li>HOME</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page3.html"><li>ABOUT</li></a>
+			
+			<a ng-href="http://localhost:8081/Cogito/loginpage.html"><li>FEEDBACK</li></a>
+		</ul>
+	</div>
+	<br><br><br>
+	<h1 align = "center" style = "font-family: Candara; color: white;" id = "h1">We'd love to know your thoughts on our service.</h1>
+	<div class="loginbox" id="remove">
+		<div class="textbox" >
+			<img src="user.jpg" width="20px" height="20px">
+			<input type="text" placeholder="Orgazisation"  id="day1" ></div>
+		<div class="textbox">
+			<img src="pexels-photo-753695.jpeg" width="20px" height="20px">
+			<input type="textarea" placeholder="Share your thoughts" id="day2"></div>
+		<input class="btn" type="button" style = "font-family: Candara;" value="Submit" onclick="get()">
+		
+	</div>
+	<iframe id="ifr" style="display:none"></iframe>
+	<ul id="list"></ul>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="chat.css">
+        <script>
+            var obj = 
+		{
+		    send1: function(){
+		    msg = "User1: " + document.getElementById("msg1").value;
+		    xhr = new XMLHttpRequest();
+		    xhr.open("GET","txtup.php?msg="+msg,true);
+		    
+		    xhr.send();
+                    evs = new EventSource("chat.php");
+                    evs.addEventListener("updateChat",obj.showData,false);
+		},
+		send2: function(){
+		    msg = "User2: " + document.getElementById("msg2").value;
+		    xhr = new XMLHttpRequest();
+		    xhr.open("GET","txtup.php?msg="+msg,true);
+		    
+		    xhr.send();
+                    evs = new EventSource("chat.php");
+                    evs.addEventListener("updateChat",obj.showData,false);
+		},
+
+                    
+                showData: function(e){
+                    console.log(e.data);
+		    
+                    var div = document.getElementById("c1");div.innerHTML = "";
+                    arr = e.data.split(";");
+		    for(var i = 0; i<arr.length;++i)
+            {
+                var msg = arr[i].split(":");
+                var str = "";
+                if(msg[0] == "User1")
+                    str = "Client :"
+                if(msg[0] == "User2")
+                    str = "You :"
+                if(str!= "")
+                div.innerHTML += str + msg[1] + "<br><br>";
+            } },
+                onOpen: function() {
+                    console.log("SSE open");
+                },
+                onError: function() {
+                    console.log("SSE error");
+                },
+                onClose: function(e) {
+                    console.log("SSE close");
+                    evs.close();
+                    console.log(e.data);
+                }
+            }
+        </script>
+    </head>
+    <body>
+<!--	<h2>User1</h2>
+	<div id = "c1"></div>
+	<input type = "text" id = "msg1"/>
+        <button onclick="obj.send1()">send</button>
+	<br><br>
+-->
+    <div class = "loginbox">
+    
+    <div class="textbox">
+            <div id = "c1"></div>
+            <img src="pexels-photo-753695.jpeg" width="30px" height="30px">
+            <input  type="textarea" placeholder="Type your message here..."  id="msg2"></div>
+    <input class="btn" type="button" style = "font-family: Candara;" value="Send" onclick="
+
+                                                                                    if(document.getElementById('msg1').value.length==0)
+                                                                                        alert('Please enter your query.');
+                                                                                    else
+                                                                                    obj.send2();">
+    <br><br> 
+</div>
+		
+    </body>
+</html>

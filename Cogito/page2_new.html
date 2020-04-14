@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+	<title>Cogito</title>
+	<link rel="stylesheet" type="text/css" href="styler2_new.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<script>
+    var slideIndex = 0;
+    var n = 4;
+    function showSS(){
+      plusSlide();
+      setTimeout(showSS, 2000);
+    }
+    function plusSlide(){
+      slideIndex += 1;
+      slideIndex = slideIndex % n;
+      obj.getdetails();
+      
+    }
+    var obj = {
+        xhr1 : new XMLHttpRequest(),
+        xhr2 : new XMLHttpRequest(),
+        getdetails : function(){          
+          var fd= new FormData();
+          fd.append("id",slideIndex);
+          this.xhr1.onreadystatechange=this.showmedia;
+          this.xhr1.timeout=6000;
+          
+          this.xhr1.open("POST","getImage.php",true);
+          this.xhr1.responseType = "blob";
+          this.xhr1.send(fd);
+          
+        },
+        
+        
+        showmedia : function(){
+           
+          if(this.readyState == 4 && this.status == 200){
+            var a = document.createElement("a");
+           
+              
+            if(slideIndex==1)
+             a.href = "http://127.0.0.1:8000";
+            else if(slideIndex==2)
+              a.href = "market.html";
+            else if(slideIndex==3)
+              a.href = "product.html";
+          	else if(slideIndex==0)
+              a.href = "market.html";
+          	else
+              a.href = "http://127.0.0.1:8000";
+           
+            var data = this.response;
+            i=document.createElement("img");
+            i.src=URL.createObjectURL(data);
+            i.width="800";
+            i.height="500";
+            //i.classList.add("d-block w-100");
+            var med = document.getElementById("img");
+            while (med.firstChild){
+              med.removeChild(med.firstChild);
+            }
+            a.appendChild(i);
+            med.appendChild(a);
+          }
+        }
+        //  <button type="button" onclick="minusSlide()"> Prev </button> <button type="button" onclick="plusSlide()"> Next </button>     
+      }  
+
+    </script>
+
+
+
+</head>
+<body>
+	<div class="navbar" ng-app="">
+		<ul>
+			<a ng-href="http://localhost:8081/Cogito/page1.html"><li>Cogito</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page2_new.html"><li>HOME</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page3.html"><li>ABOUT</li></a>
+			
+			<a ng-href="http://localhost:8081/Cogito/loginpage.html"><li>FEEDBACK</li></a>
+					</ul>
+	</div>
+	<br>
+	<div class="a2" style= "font-family: Candara;">Better events, together.</div>
+	<!-- <div class="hover1">
+     <a>DOOR-TO-DOOR SALES<span><img src="door.png" alt="image" height="100" /></span></a>
+</div>
+<div class="hover2">
+     <a>ADVERTISING CAMPAIGN<span><img src="ad.jpg" alt="image" height="100" /></span></a>
+</div>
+<div class="hover3">
+     <a>EFFICIENT MARKETING PLAN<span><img src="plan.jpg" alt="image" height="200" width="300" /></span></a>
+</div>
+<div class="hover4">
+     <a>CAMPAIGN FOR COLLEGE FESTS<span><img src="collegefests.jpg" alt="image" height="200" /></span></a>
+</div>
+
+</body>
+</html> -->
+
+<br>
+<div class="bd-example">
+  
+   
+    
+      <div id="img">
+      </div>
+    </div>
+    
+ <script>showSS(); </script>
+</h5>
+</h5>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div></div>
+<div></div>
+</body>
+</html>

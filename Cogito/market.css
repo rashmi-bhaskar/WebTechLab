@@ -1,0 +1,123 @@
+body{
+	margin:0;
+	background-image: url('prod.jpg');
+	 background-color: #cccccc;
+	 background-size: cover;
+}
+
+ul{
+	list-style: none;
+	margin-top: 0px;
+}
+.navbar{
+	background-color: rgba(0,0,0,0.5);
+}
+li{
+	display: inline-block;
+	font-family: Candara;
+	font-size: 120%;
+	padding: 30px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: white;
+}
+
+li:hover{
+	background-color: #01ff87;
+	color: black;
+
+}
+.bd-example
+{
+	transform: translate(35%,5%);
+	width: 60%;
+	height: 10vh;
+}
+.a1{
+	/*transform: translate(40%,10%);*/
+	
+	color:white;
+	text-align: center;
+	font-size: 150%;
+
+}
+.a2{
+	color:white;
+	font-family: Candara;
+	text-align: center;
+	font-size: 300%;
+	}
+
+.hover1{
+	color: white;
+	font-size: 150%;
+	/*font-style: italic;*/
+	/*font-weight: 120%;*/
+	transform: translate(105%,240%);
+	border-bottom: 4px solid #01ff87;
+	border-right: 2px solid #01ff87;
+	box-shadow: 4px 8px 0 0 #4b4b4b;
+	width: 18%;
+}
+.hover1 a { position:relative; }
+.hover1 a span { position:absolute; display:none; }
+.hover1 a:hover span { display:block; }
+
+.hover2{
+	color: white;
+	font-size: 150%;
+	/*transform: translate(65%,150%);*/
+	margin-left: 60vw;
+	margin-top: 6vh;
+	margin-right: 0;
+	padding-right: 0;
+	/*background-color: #4b4b4b;*/
+	border-bottom: 4px solid #01ff87;
+	border-right: 2px solid #01ff87;
+	box-shadow: 4px 8px 0 0 #4b4b4b;
+
+	width: 20%;
+}
+.hover2 a { position:relative; }
+.hover2 a span { position:absolute; display:none; }
+.hover2 a:hover span { display:block;}
+.hover3{
+	color: white;
+	font-size: 150%;
+	transform: translate(80%,300%);
+	border-bottom: 4px solid #01ff87;
+	border-right: 2px solid #01ff87;
+	box-shadow: 4px 8px 0 0 #4b4b4b;
+	width: 23%;
+}
+.hover3 a { position:relative; }
+.hover3 a span { position:absolute; display:none; }
+.hover3 a:hover span { display:block;
+transform: translate(-50%,10%);}
+
+.hover4{
+	color: white;
+	font-size: 150%;
+	/*transform: translate(65%,150%);*/
+	margin-left: 60vw;
+	margin-top: 9vh;
+	margin-right: 0;
+	padding-right: 0;
+	/*background-color: #4b4b4b;*/
+	border-bottom: 4px solid #01ff87;
+	border-right: 2px solid #01ff87;
+	box-shadow: 4px 8px 0 0 #4b4b4b;
+
+	width: 25%;
+}
+.hover4 a { position:relative; }
+.hover4 a span { position:absolute; display:none; z-index:99;}
+.hover4 a:hover span { display:block;
+transform: translate(200%,-50%);}
+
+.btn1{
+	margin-left: 10%;
+	padding: 10%;	
+	transform: translate(10%,30%);
+}
+

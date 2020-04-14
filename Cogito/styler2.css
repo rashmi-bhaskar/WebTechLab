@@ -1,0 +1,172 @@
+body{
+	margin:0;
+	background-image: url('glenn-carstens-peters-P1qyEf1g0HU-unsplash.jpg');
+	 background-color: #cccccc;
+	 background-size: cover;
+}
+
+ul{
+	list-style: none;
+	margin-top: 0px;
+	/*display: inline-block;*/
+}
+.navbar{
+	/*margin-top: 0;*/
+	/*height: 100%;*/
+	background-color: rgba(0,0,0,0.5);
+	/*border:2px solid #32139b69;*/
+}
+li{
+	/*margin-top: 0;*/
+	/*animation: bounceIn 1s ease-in;*/
+	display: inline-block;
+	font-family: Candara;
+	font-size: 120%;
+	padding: 30px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: white;
+	/*background-color: rgba(0,0,0,0.8);*/
+}
+
+li:hover{
+	/*box-shadow: rgba(255,255,255,0.5);*/
+	/*transform: scale(1.1);*/
+	/*transition: all 0.5s;*/
+	/*animation: bounceIn 1s ease-in;*/
+	background-color: #01ff87;
+	color: black;
+	/*transform: scale3d(1.1,1.1,1.1);*/
+
+}
+
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+}
+
+/*.content1{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 30px;
+	transform: translate(-50%,-50%);
+	font-size: 150%;
+	color: white;
+	font-family: Candara;
+	border:5px solid #01ff87;
+	background-color: #00000045;
+	line-height: 70px;
+}*/
+.line1{
+	font-size: 350%;
+	border-bottom: 1.3px solid #01ff87;
+	width: 430px;
+	color: white;
+}
+.a1{
+	display: inline-block;	
+	color: 	white;
+	font-size: 	150%;
+	padding-left: 20%;
+	padding-top: 7%;
+}
+.a2{
+	display: inline-block;	
+	color: white;
+	font-size: 150%;
+	padding-left: 20%;
+}
+.a3{
+	
+}
+/*.a1{
+	animation: zoomIn 0.3s ease-in;
+}
+.a2{
+	animation: zoomIn 0.6s ease-in;
+}
+.a3{
+	animation: zoomIn 0.9s ease-in;
+}
+.a4{
+	animation: zoomIn 1.2s ease-in;
+}
+.a5{
+	animation: zoomIn 1.5s ease-in;
+}
+.a6{
+	animation: zoomIn 1.8s ease-in;
+}*/
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+.btn{
+	transform: translate(670px,500px);
+	text-align: center;
+	width: 10%;
+	background:none;
+	border:2px solid #01ff87;
+	color: white;
+	padding: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	margin: 15px 0;
+}
+@keyframes lightSpeedIn {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+    transform: translate3d(100%, 0, 0) skewX(-30deg);
+    opacity: 0;
+  }
+ }
+ @keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(10%, 0, 0);
+    visibility: hidden;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slide{
+	from{
+		float: right;
+	}
+	to{
+		float: left;
+	}
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}

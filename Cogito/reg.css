@@ -1,0 +1,104 @@
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  /*background-color: black;*/
+  background-image: url('Light-sky-stars-background.jpg');
+  background-size: cover;
+}
+
+/*table{
+  margin:25px 0 0 25px;
+}
+
+* {
+  box-sizing: border-box;
+}*/
+form p label abbr {
+  border: none;
+  font-weight: bold;
+  color: #f00;
+}
+input[area-invalid="true"], textarea[area-invalid="true"] {
+  border: 1px solid #f00;
+  box-shadow: 0 0 4px 0 #f00;
+}
+.container {
+  padding: 12px 20px;
+  margin-left: auto;
+  margin-right: auto;
+  
+ background: url("register_background.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: Georgia;
+}
+
+
+input[type=text], input[type=password] {
+  width: 7.2vw;
+  padding: 15px;
+  margin: 5px 0 12px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+
+
+}
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-weight: 550;
+  font-family: Arial, Helvetica, sans-serif; 
+  margin: 0; 
+}
+
+
+.registerbtn1 {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin-left: 350px;
+  border: 1px solid;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  width: 7vw;
+  position:absolute;
+  text-align: center;
+  opacity: 0.9;
+  float:center;
+}
+
+.registerbtn1:hover {
+  opacity: 1;
+}
+
+
+a {
+  color: red;
+}
+
+
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+</style>

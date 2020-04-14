@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cogito</title>
+	<link rel="stylesheet" type="text/css" href="styler.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+	<video autoplay muted loop id="myVideo">
+		<source src="bgv.mp4" type="video/mp4">
+	</video>
+	<div class="content" ng-app = "">
+	<div class="opener">COGITO</div>
+	<div class="line1">Marketing Campaign Solution<br><br></div>
+	<div ng-init="myVar = 'http://localhost:8081/Cogito/page2_new.html' ">
+	<a ng-href="{{myVar}}"><div class="button_1"> FIND OUT MORE</div></a>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ABOUT</title>
+	<link rel="stylesheet" type="text/css" href="styler3.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+	<script type="text/javascript">
+
+    function update(str)
+    {
+      var act_arr = str.split(";");
+      var list = document.getElementById("list");
+   
+      for (var i in act_arr) 
+      {
+        var item = document.createElement("li");
+        var p = document.createElement("p");
+        if(act_arr[i])
+        {
+          p.innerHTML = act_arr[i];
+          item.appendChild(p);
+          list.appendChild(item);
+        }
+      }
+    }
+  </script>
+
+</head>
+<body>
+		<div class="navbar" ng-app="">
+		<ul>
+			<a ng-href="http://localhost:8081/Cogito/page1.html"><li>Cogito</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page2_new.html"><li>HOME</li></a>
+			<a ng-href="http://localhost:8081/Cogito/page3.html"><li>ABOUT</li></a>
+			
+			<a ng-href="http://localhost:8081/Cogito/loginpage.html"><li>FEEDBACK</li></a>
+					</ul>
+	</div>
+		<div class="a1"><p>COGITO (Latin for "to plan" is a web tool that lets it's users plan out product/event marketing campaigns in great detail after taking into consideration a wide array of input parameters</p></div>
+		<div class="a2"><p>For example, if a user wanted to plan his campaign for a science fest being hosted by his university, he would simply have to tell COGITO the following things</p>
+			<ul>
+				<li>Target Audience</li>
+				<li>Location</li>
+				<li>Campaign Budget</li>
+				<li>Campaign team details: Restrictions, Preferences etc</li>
+				<li>Optimization Parameters: Travel expense, distance, proximity to university etc</li>
+				<li>Campaign Duration</li>
+			</ul>
+			<p>COGITO analyses these constraints and solves the campaigning problem to arrive at an optimal solution</p>
+		</div>
+
+		<div class="a3"><p>Cogito does the following things for the user(in the specified example):</p>
+			<ul>
+				<li><p>Collects a database of all schools in Bangalore along with details like detailed address, email address, phone number, principal’s name, student population strength, etc..</p></li>
+				<li><p>Plans out daily campaign agendae for the various campaigning teams by considering various geographical and non – geographical parameters.</p></li>	
+				<li><p>Calculates estimated travel expenses and suggests budget for campaign materials.</p></li>
+				<li><p>Updates the campaigners on a daily basis.</p></li>
+				<li><p>Automatically updates the database regarding responses at various schools.</p></li>
+				<li><p>Estimates probable event turnout as every day passes.</p></li>
+				<li><p>Updates the managerial team about every day’s work and assigns productivity ranks to the various campaigning teams.</p></li>
+				<li><p>And many more niche optimizations that can only be discussed in detail in future documentation.</p></li>
+			</ul>
+
+
+		</div>
+
+		<div class="a3"><p>We make our customers geuinely happy...</p>
+			<ul id="list">
+				<li><p>PES University: Honestly , this company provides for the most budget friendly  feature packages ever. Such great  industry standard services , provided at a pocket friendly price was really useful for us to carry out and organize the annual fest of our college. We could properly target the right customers and partners and draw them in our fest, helped us reach and maintain the gold standard that is set. 
+					A big thumps up and thank you from the PES Family.</p></li>
+			</ul>
+
+			
+			<form action="server.php"  method="POST" target="ifr">
+			<button type="submit" style="width: 100%;
+									background:none;
+									border:2px solid #01ff87;
+									color: white;
+									padding: 5px;
+								    font-size: 25px;
+									cursor: pointer;
+									margin: 15px 0;
+									font-family: Candara;">Do you want to hear more stories?</button>
+									</form> </div>
+
+		
+
+		<iframe name="ifr" style="display:none"></iframe>
+
+</body>
+</html>
